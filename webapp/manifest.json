@@ -1,0 +1,75 @@
+{
+    "_version": "1.33.0",
+    "sap.app":{
+        "id": "tcs.fin.ap",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion":{
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}"
+    },
+    "sap.ui":{
+        "technology": "UI5",
+        "deviceTypes": ["desktop","tablet","mobile"]
+    },
+    "sap.ui5":{
+        "dependencies":{
+            "minUI5Version":"1.90.0",
+            "libs":{
+                "sap.m":{},
+                "sap.ui.layout": {}
+            }
+        },
+        "models":{
+            "":{
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "mockdata/fruits.json"
+            },
+            "i18n":{
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }            
+        },
+        "rootView":{
+            "viewName": "tcs.fin.ap.view.App",
+            "type": "XML",
+            "id": "idAppView"
+        },
+        "routing":{
+            "config":{
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "path": "tcs.fin.ap.view",
+                "controlId": "appCon"
+            },
+            "routes": [{
+                "name": "home",
+                "pattern": "",
+                "target": ["joe","modi"]
+            },{
+                "name": "detail",
+                "pattern": "fruits/{fruitId}",
+                "target": ["joe","biden"]
+            }],
+            "targets": {
+                "joe" :{
+                    "viewName":"View1",
+                    "viewId":"idView1",
+                    "controlAggregation": "masterPages"
+                },
+                "biden":{
+                    "viewName":"View2",
+                    "viewId":"idView2",
+                    "controlAggregation": "detailPages"
+                },
+                "modi":{
+                    "viewName":"Empty",
+                    "viewId":"idEmpty",
+                    "controlAggregation": "detailPages"
+                }
+            }
+        }
+    }
+}
